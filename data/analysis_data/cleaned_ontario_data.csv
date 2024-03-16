@@ -1,31 +1,106 @@
-REF_DATE,GEO,Sex,Leading causes of death (ICD-10),Characteristics,VALUE,Year
-2018,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,107275,2018
-2018,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29702,2018
-2018,ONT,Both sexes,Other causes of death,Number of deaths,21978,2018
-2018,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20306,2018
-2018,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,6229,2018
-2018,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5017,2018
-2019,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,107542,2019
-2019,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29495,2019
-2019,ONT,Both sexes,Other causes of death,Number of deaths,22801,2019
-2019,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20208,2019
-2019,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,6345,2019
-2019,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5092,2019
-2020,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,115930,2020
-2020,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30002,2020
-2020,ONT,Both sexes,Other causes of death,Number of deaths,23786,2020
-2020,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21086,2020
-2020,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7446,2020
-2020,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5298,2020
-2021,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,117456,2021
-2021,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30751,2021
-2021,ONT,Both sexes,Other causes of death,Number of deaths,25351,2021
-2021,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21162,2021
-2021,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7463,2021
-2021,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,4959,2021
-2022,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,124757,2022
-2022,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30452,2022
-2022,ONT,Both sexes,Other causes of death,Number of deaths,30263,2022
-2022,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21825,2022
-2022,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7091,2022
-2022,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5078,2022
+REF_DATE,GEO,Sex,Leading causes of death (ICD-10),Characteristics,VALUE
+2002,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,24003
+2002,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20164
+2002,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5927
+2002,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3051
+2002,ONT,Both sexes,Other causes of death,Number of deaths,10116
+2003,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,24535
+2003,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20215
+2003,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5887
+2003,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3170
+2003,ONT,Both sexes,Other causes of death,Number of deaths,10545
+2004,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,24690
+2004,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,19508
+2004,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5698
+2004,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3251
+2004,ONT,Both sexes,Other causes of death,Number of deaths,10537
+2005,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,24967
+2005,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,19769
+2005,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5445
+2005,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3436
+2005,ONT,Both sexes,Other causes of death,Number of deaths,11159
+2006,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,25023
+2006,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,18931
+2006,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5270
+2006,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3645
+2006,ONT,Both sexes,Other causes of death,Number of deaths,12276
+2007,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,25456
+2007,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,18910
+2007,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5343
+2007,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3807
+2007,ONT,Both sexes,Other causes of death,Number of deaths,13093
+2008,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,25940
+2008,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,18841
+2008,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5192
+2008,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3837
+2008,ONT,Both sexes,Other causes of death,Number of deaths,13314
+2009,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,26117
+2009,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,18494
+2009,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5451
+2009,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,3881
+2009,ONT,Both sexes,Other causes of death,Number of deaths,13455
+2010,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,26628
+2010,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,17983
+2010,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5315
+2010,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,4283
+2010,ONT,Both sexes,Other causes of death,Number of deaths,14048
+2011,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,27052
+2011,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,17785
+2011,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,4965
+2011,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,4245
+2011,ONT,Both sexes,Other causes of death,Number of deaths,14744
+2012,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,27378
+2012,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,17970
+2012,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,4917
+2012,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,4491
+2012,ONT,Both sexes,Other causes of death,Number of deaths,14938
+2013,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,27601
+2013,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,18608
+2013,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,4940
+2013,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,4594
+2013,ONT,Both sexes,Other causes of death,Number of deaths,16285
+2014,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,28002
+2014,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,19160
+2014,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5109
+2014,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,4719
+2014,ONT,Both sexes,Other causes of death,Number of deaths,17164
+2015,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,28226
+2015,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,19054
+2015,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5050
+2015,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,4792
+2015,ONT,Both sexes,Other causes of death,Number of deaths,17813
+2016,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29139
+2016,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,19290
+2016,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5123
+2016,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,5073
+2016,ONT,Both sexes,Other causes of death,Number of deaths,19151
+2017,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29417
+2017,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,19911
+2017,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5084
+2017,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,5802
+2017,ONT,Both sexes,Other causes of death,Number of deaths,20557
+2018,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29702
+2018,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20306
+2018,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5017
+2018,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,6229
+2018,ONT,Both sexes,Other causes of death,Number of deaths,21978
+2019,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29495
+2019,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20208
+2019,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5092
+2019,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,6345
+2019,ONT,Both sexes,Other causes of death,Number of deaths,22801
+2020,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30002
+2020,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21086
+2020,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5298
+2020,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7446
+2020,ONT,Both sexes,Other causes of death,Number of deaths,23786
+2021,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30751
+2021,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21162
+2021,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,4959
+2021,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7463
+2021,ONT,Both sexes,Other causes of death,Number of deaths,25351
+2022,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30452
+2022,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21825
+2022,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5078
+2022,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7091
+2022,ONT,Both sexes,Other causes of death,Number of deaths,30263
