@@ -1,6 +1,6 @@
 #### Preamble ####
 # Purpose: Downloads and saves the data from statcan
-# Author: RNikhil Iyer
+# Author: Nikhil Iyer
 # Date: 16 March 2024
 # Contact: nik.iyer@mail.utoronto.ca
 # License: MIT

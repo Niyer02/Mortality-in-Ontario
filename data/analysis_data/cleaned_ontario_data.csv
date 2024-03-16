@@ -1,0 +1,31 @@
+REF_DATE,GEO,Sex,Leading causes of death (ICD-10),Characteristics,VALUE,Year
+2018,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,107275,2018
+2018,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29702,2018
+2018,ONT,Both sexes,Other causes of death,Number of deaths,21978,2018
+2018,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20306,2018
+2018,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,6229,2018
+2018,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5017,2018
+2019,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,107542,2019
+2019,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,29495,2019
+2019,ONT,Both sexes,Other causes of death,Number of deaths,22801,2019
+2019,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,20208,2019
+2019,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,6345,2019
+2019,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5092,2019
+2020,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,115930,2020
+2020,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30002,2020
+2020,ONT,Both sexes,Other causes of death,Number of deaths,23786,2020
+2020,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21086,2020
+2020,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7446,2020
+2020,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5298,2020
+2021,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,117456,2021
+2021,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30751,2021
+2021,ONT,Both sexes,Other causes of death,Number of deaths,25351,2021
+2021,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21162,2021
+2021,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7463,2021
+2021,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,4959,2021
+2022,ONT,Both sexes,"Total, all causes of death [A00-Y89]",Number of deaths,124757,2022
+2022,ONT,Both sexes,Malignant neoplasms [C00-C97],Number of deaths,30452,2022
+2022,ONT,Both sexes,Other causes of death,Number of deaths,30263,2022
+2022,ONT,Both sexes,"Diseases of heart [I00-I09, I11, I13, I20-I51]",Number of deaths,21825,2022
+2022,ONT,Both sexes,"Accidents (unintentional injuries) [V01-X59, Y85-Y86]",Number of deaths,7091,2022
+2022,ONT,Both sexes,Cerebrovascular diseases [I60-I69],Number of deaths,5078,2022
