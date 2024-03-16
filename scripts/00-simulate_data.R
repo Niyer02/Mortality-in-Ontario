@@ -1,19 +1,23 @@
 #### Preamble ####
-# Purpose: Simulates... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Simulates the Mortality rates and causes in Ontario
+# Author: RNikhil Iyer
+# Date: 16 March 2024
+# Contact: nik.iyer@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: Dependancies Installed
+
 
 
 #### Workspace setup ####
 library(tidyverse)
-# [...UPDATE THIS...]
+library(ggplot2)
 
 #### Simulate data ####
-# [...ADD CODE HERE...]
+ontario_death_simulation <- tibble(
+  cause = rep(c("COVID-19", "Disease", "Homicide", "Accident", "Suicide"), each = 5),
+  year = rep(2018:2022, times = 5),
+  deaths = rnbinom(n = 25, size = 20, prob = 0.1)
+)
 
-
-
+# View the initial 6 lines of the DF
+head(ontario_death_simulation)
