@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/Niyer02/Mortality-in-Ontario"
 date: today
 date-format: long
-abstract: "Mortality trends have been studied and monitored for centuries, in which they play a pivotal role in understanding the health dynamics of populations. This paper looks at mortality trends in Ontario from 2002 to 2022, using Generalized Linear Models. This study shows that mortality trends are nuanced and best modelled using a Negative Binomial model. The preferance for a Negative Binomial model in modelling mortality data in Ontario is evidence of the complex nature of mortality. This study highlights the importance of managing disparaties in the Ontario healthcare access and quality."
+abstract: "Mortality trends have been studied and monitored for centuries, in which they play a pivotal role in understanding the health dynamics of populations. This paper looks at mortality trends in Ontario from 2002 to 2022, using Generalized Linear Models. This study shows that mortality trends are nuanced and best modeled using a Negative Binomial model. The preference for a Negative Binomial model in modeling mortality data in Ontario is evidence of the complex nature of mortality. This study highlights the importance of managing disparities in Ontario healthcare access and quality."
 format: pdf
 number-sections: true
 header-includes:
@@ -29,11 +29,11 @@ library(modelsummary)
 
 # Introduction
 
-In Ontario, Canada, the investigation of morality trends has attracted significant attention, driven by a commitment from government officials to make evidence-based policies. Morality trends are a vital metric in assessing the health of a population, and provides insight into the effectiveness of the healthcare systems. This paper models morality trends in Ontario from 2002 to 2022, using data (\ref{sec-data}) provided by Statistics Canada [@statscan].
+In Ontario, Canada, the investigation of morality trends has attracted significant attention, driven by a commitment from government officials to make evidence-based policies. Morality trends are a vital metric in assessing the health of a population and provide insight into the effectiveness of the healthcare systems. This paper models mortality trends in Ontario from 2002 to 2022, using data (\ref{sec-data}) provided by Statistics Canada [@statscan].
 
-This study aims to fill the gap in understanding the underlying distribution of mortality patters in Ontario. Using mainly `R` [@citeR], `tidyverse` [@citetidy], and `rstanarm` [@citerstanarm], and with heavy inspiration from TELLING STORIES WITH DATA [@rohan] the data is analyzed using regression analysis to find the behavior of mortality trends.
+This study aims to fill the gap in understanding the underlying distribution of mortality patterns in Ontario. Using mainly `R` [@citeR], `tidyverse` [@citetidy], and `rstanarm` [@citerstanarm], and with heavy inspiration from TELLING STORIES WITH DATA [@rohan] the data is analyzed using regression analysis to find the behavior of mortality trends.
 
-The analysis revealed that mortality trends in Ontario are best represented using a Negative Binomial model which outlines the nuances and complex nature of mortality, while leaving space for outside factors that could affect the data. These findings can be used as indicators for understanding the health status of Ontario's population, which can be used to make evidence based decision that will positively impact the province.
+The analysis revealed that mortality trends in Ontario are best represented using a Negative Binomial model which outlines the nuances and complex nature of mortality while leaving space for outside factors that could affect the data. These findings can be used as indicators for understanding the health status of Ontario's population, which can be used to make evidence-based decision that will positively impact the province.
 
 
 # Data {#sec-data}
@@ -80,11 +80,11 @@ ggplot(analysis_data, aes(x = REF_DATE, y = VALUE, fill = `Leading causes of dea
   theme_minimal() +
   theme(legend.position = "right")
 ```
-From @fig-bar, it is more evident that the number of deaths has increased greatly, and all causes of death (`Leading causes of death (ICD-10)`) follow an exponential growth. Visualizing the data was important, as it allowed for a better understanding and thus a better model to be fit.
+From @fig-bar, it is more evident that the number of deaths has increased greatly, and all causes of death (`Leading causes of death (ICD-10)`) follow an exponential growth. Visualizing the data was important, as it allowed for a better understanding and thus a better model to fit.
 
 # Model {#model}
 
-The goal of our modelling strategy is analyze the data (\ref{sec-data}), and to identify patterns and relationships. We showcase the applications of Poisson, Negative Binomial, and Gaussian regression models, and determine the model that captures the underlying distribution the most effectively.
+The goal of our modeling strategy is to analyze the data (\ref{sec-data}) and to identify patterns and relationships. We showcase the applications of Poisson, Negative Binomial, and Gaussian regression models, and determine the model that captures the underlying distribution the most effectively.
 
 ## Model set-up
 
@@ -171,27 +171,26 @@ gaussian <- loo(model_gaussian, cores = 1)
 loo_compare(gaussian, neg_binomial, poisson)
 
 ```
-From the leave-one-out(LOO) cross-validation (CV) re-sampling method, we can confirm that the Negative Binomial model was the best choice, because ELPD is larger.
+From the leave-one-out(LOO) cross-validation (CV) re-sampling method, we can confirm that the Negative Binomial model was the best choice because ELPD is larger.
 
 # Results
 
-The result of this analysis is that the Negative Binomial model is the optimal choice for modelling mortality trends in Ontario. This suggests that the Negative Binomial distribution captures the variability and complexities in the mortality data. This is likely because the Negative Binomial model accounts for over dispersion among other factors within the data.
+The result of this analysis is that the Negative Binomial model is the optimal choice for modeling mortality trends in Ontario. This suggests that the Negative Binomial distribution captures the variability and complexities in the mortality data. This is likely because the Negative Binomial model accounts for over-dispersion among other factors within the data.
 
-The ability of the model to accurately model the trend enables officials and authorities to gain deeper insights, and to make a more educated decision based on the evidence. Overall, officials can use the Negative Binomial model, and leverage its predictive power to implement practices and make changes to better the health of Ontario's population.
-
+The ability of the model to accurately model the trend enables officials and authorities to gain deeper insights and to make a more educated decision based on the evidence. Overall, officials can use the Negative Binomial model, and leverage its predictive power to implement practices and make changes to better the health of Ontario's population.
 
 
 # Discussion
 
 ## About the Findings
 
-By selecting a model that accurately fits the mortality data (\ref{sec-data}), officials gain a powerful tool in analyzing and predicting the health of Ontario's population. Leveraging this tool can be used for targeted developments and interventions tailored to the population. Insights from the model can be used to allocate funds and resources, and find discrepancies in the healthcare system. 
+By selecting a model that accurately fits the mortality data (\ref{sec-data}), officials gain a powerful tool for analyzing and predicting the health of Ontario's population. Leveraging this tool can be used for targeted developments and interventions tailored to the population. Insights from the model can be used to allocate funds and resources and find discrepancies in the healthcare system. 
 
 It can be seen from the model summary in the appendix (\ref{app}) that some features (Causes of Death) have a higher overall presence than others. Officials could use this information to allocate resources towards the features that have the highest mortality rate. Furthermore, the Negative Binomial model can be used to forecast future mortality trends, which can be used to proactively plan and adapt the healthcare system wherever possible.
 
 ## Weaknesses and next steps
 
-Weaknesses in this study are most prevalent in the model (\ref{model}) section. Models were restricted to Generalized Linear Models (GLM's), and although they accurately captured the underlying distribution, a different type of model could have done a better job. Additionally, access to more data that covers a wider time rane would yield a better model that could be used for more general inference.
+Weaknesses in this study are most prevalent in the model (\ref{model}) section. Models were restricted to Generalized Linear Models (GLMs), and although they accurately captured the underlying distribution, a different type of model could have done a better job. Additionally, access to more data that covers a wider time range would yield a better model that could be used for more general inference.
 
 \newpage
 
