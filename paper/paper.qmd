@@ -1,15 +1,18 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "A Statistical Analysis of Mortality in Ontario"
+subtitle: "An Analysis of Poisson, Negative Binomial, and Gaussian Regression Models."
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Nikhil Iyer
+thanks: "Code and data are available at: https://github.com/Niyer02/Mortality-in-Ontario"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "Mortality trends have been studied and monitored for centuries, in which they play a pivotal role in understanding the health dynamics of populations. This paper looks at mortality trends in Ontario from 2002 to 2022, using Generalized Linear Models. This study shows that mortality trends are nuanced and best modelled using a Negative Binomial model. The preferance for a Negative Binomial model in modelling mortality data in Ontario is evidence of the complex nature of mortality. This study highlights the importance of managing disparaties in the Ontario healthcare access and quality."
 format: pdf
 number-sections: true
+header-includes:
+      - \usepackage{float}
+      - \floatplacement{table}{H}
+      - \floatplacement{figure}{H}
 bibliography: references.bib
 ---
 
@@ -19,202 +22,198 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
+library(rstanarm)
+library(modelsummary)
 ```
 
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+In Ontario, Canada, the investigation of morality trends has attracted significant attention, driven by a commitment from government officials to make evidence-based policies. Morality trends are a vital metric in assessing the health of a population, and provides insight into the effectiveness of the healthcare systems. This paper models morality trends in Ontario from 2002 to 2022, using data (\ref{sec-data}) provided by [@statscan].
 
-The remainder of this paper is structured as follows. @sec-data....
+This study aims to fill the gap in understanding the underlying distribution of mortality patters in Ontario. Using mainly `R` [@citeR], `tidyverse` [@citetidy], and `rstanarm` [@citerstanarm], and with heavy inspiration from TELLING STORIES WITH DATA [@rohan] the data is analyzed using regression analysis to find the behavior of mortality trends.
 
+The analysis revealed that mortality trends in Ontario are best represented using a Negative Binomial model which outlines the nuances and complex nature of mortality, while leaving space for outside factors that could affect the data. These findings can be used as indicators for understanding the health status of Ontario's population, which can be used to make evidence based decision that will positively impact the province.
 
 
 # Data {#sec-data}
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+The raw data was retrieved from Statistics Canada [@statscan]. The data provided was a comprehensive table with many variables. However, for the purpose of this analysis, only the most prevalent features were retained. Cleaned data [@dplyr] [@readr] was derived from the raw data, with  features of interest being the cause of death (`Leading causes of death (ICD-10)`) and death count (`VALUE`). The data was extracted and cleaned such that each year has the same 5 causes of death (`Leading causes of death (ICD-10)`), which allowed for the fitting of the mode to the data set.
+
+For a better understating, the data can be classified by year (`REF_DATE`) with 5 causes of death (`Leading causes of death (ICD-10)`) per year, in the range of 2002 to 2022. A time series of the variables can be seen in @fig-data. 
 
 ```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
-
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
-
-Talk more about it.
-
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
-
-```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
-#| echo: false
 #| warning: false
 #| message: false
+#| label: fig-data
+#| fig-cap: Time Series of Deaths in Ontario from 2002 to 2022
+#| echo: false
+analysis_data <- read_csv("/cloud/project/data/analysis_data/cleaned_ontario_data.csv")
 
-analysis_data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
-
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
+# Plot the variables
+analysis_data |>
+  ggplot(aes(x = REF_DATE, y = VALUE, color = `Leading causes of death (ICD-10)`)) +
+  geom_line() +
   theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
+  scale_color_brewer(palette = "Set1") +
+  labs(x = "Year", y = "Annual number of deaths in Ontario") +
+  facet_wrap(vars(`Leading causes of death (ICD-10)`), dir = "v", ncol = 1) +
+  theme(legend.position = "none")
 ```
 
-Talk way more about it. 
+From @fig-data, we can see that most causes of death (`Leading causes of death (ICD-10)`) either remain stagnant or slightly increase in time. However `Other causes of death` sees a big increase in frequency. Alternatively, we can view the variables in a stacked bar chart [@ggplot] to get a better understanding of the trends over the time frame. The stacked bar chart with the variables of interest can be seen in @fig-bar.
 
+```{r}
+#| warning: false
+#| message: false
+#| label: fig-bar
+#| fig-cap: Stacked Bar Chart of Deaths in Ontario from 2002 to 2022
+#| echo: false
+analysis_data <- read_csv("/cloud/project/data/analysis_data/cleaned_ontario_data.csv")
 
+analysis_data$`Leading causes of death (ICD-10)` <- str_wrap(analysis_data$`Leading causes of death (ICD-10)`, width = 20)
 
-# Model
+# Create the histogram
+ggplot(analysis_data, aes(x = REF_DATE, y = VALUE, fill = `Leading causes of death (ICD-10)`)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Year", y = "Number of deaths", fill = "Cause of death") +
+  theme_minimal() +
+  theme(legend.position = "right")
+```
+From @fig-bar, it is more evident that the number of deaths has increased greatly, and all causes of death (`Leading causes of death (ICD-10)`) follow an exponential growth. Visualizing the data was important, as it allowed for a better understanding and thus a better model to be fit.
 
-The goal of our modelling strategy is twofold. Firstly,...
+# Model {#model}
 
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
+The goal of our modelling strategy is analyze the data (\ref{sec-data}), and to identify patterns and relationships. We showcase the applications of Poisson, Negative Binomial, and Gaussian regression models, and determine the model that captures the underlying distribution the most effectively.
 
 ## Model set-up
 
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
+Define $y_i$ as the number of deaths. Then $\mu_i$ represent the mean of the negative binomial distribution for observation $i$.
 
 \begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
+y_i &\sim \mbox{NegBinomial}(\mu_i, \phi) \\
+\mu_i &= e^{\eta_i}\\
+\eta_i &= \beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip}
 \end{align}
 
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
+Where $\beta_0$ is the intercept, $\beta_1 x_{i1} + \ldots + \beta_p x_{ip}$ are the coefficients, and $\phi$ is the dispersion parameter of the Negative Binomial distribution.
+We run the model in R [@citeR] using the `rstanarm` package of @citerstanarm. We use the default priors from `rstanarm`. The other models tested did not achieve the same accuracy as the Negative Binomial model, as such they will not be defined in this paper.
 
 
 ### Model justification
+```{r, echo=FALSE,results='hide',fig.keep='all'}
+#| warning: false
+#| message: false
+#| label: fig-model
+#| fig-cap: Poisson, Negative Binomial, and Gaussian Regression Models Fitted on the Data
+#| echo: false
+analysis_data <- read_csv("/cloud/project/data/analysis_data/cleaned_ontario_data.csv")
 
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
+# Fit Poisson regression model
+model_poisson <- stan_glm(
+  VALUE ~ `Leading causes of death (ICD-10)`,
+  data = analysis_data,
+  family = poisson(link = "log"),
+  seed = 853
+)
 
-We can use maths by including latex between dollar signs, for instance $\theta$.
+# Fit negative Binomial regression model
+model_neg_binomial <- stan_glm(
+  VALUE ~ `Leading causes of death (ICD-10)`,
+  data = analysis_data,
+  family = neg_binomial_2(link = "log"),
+  seed = 853
+)
 
+# Fit Gaussian regression model
+model_gaussian <- stan_glm(
+  VALUE ~ `Leading causes of death (ICD-10)`,
+  data = analysis_data,
+  family = gaussian(),
+  seed = 853
+)
+
+
+# List of models
+model_list <- list(
+  "Poisson" = model_poisson,
+  "Negative Binomial" = model_neg_binomial,
+  "Gaussian" = model_gaussian
+)
+
+# Plot all models
+plot_list <- lapply(names(model_list), function(model_name) {
+  pp_check(model_list[[model_name]]) + 
+    ggtitle(model_name) +
+    theme(legend.position = "bottom")
+})
+
+gridExtra::grid.arrange(
+  grobs = plot_list,
+  nrow = 2,
+  ncol = 2
+)
+```
+From @fig-model, we can see that the Negative Binomial model fits the best, however it is very close to the Gaussian model. To further confirm this we can further compare the models using the re-sampling method leave-one-out(LOO) cross-validation (CV) seen in @tbl-eval.
+
+```{r}
+#| warning: false
+#| message: false
+#| label: tbl-eval
+#| tbl-ca: Leave-One-Out(LOO) Cross-Validation (CV) Comparison on Poisson, Negative Binomial, and Gaussian Regression Models.
+#| echo: false
+
+# Use Loo to compare the models
+poisson <- loo(model_poisson, cores = 1)
+neg_binomial <- loo(model_neg_binomial, cores = 1)
+gaussian <- loo(model_gaussian, cores = 1)
+
+loo_compare(gaussian, neg_binomial, poisson)
+
+```
+From the leave-one-out(LOO) cross-validation (CV) re-sampling method, we can confirm that the Negative Binomial model was the best choice, because ELPD is larger.
 
 # Results
 
-Our results are summarized in @tbl-modelresults.
+The result of this analysis is that the Negative Binomial model is the optimal choice for modelling mortality trends in Ontario. This suggests that the Negative Binomial distribution captures the variability and complexities in the mortality data. This is likely because the Negative Binomial model accounts for over dispersion among other factors within the data.
 
-```{r}
-#| echo: false
-#| eval: true
-#| warning: false
-#| message: false
-
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
-```
-
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
-
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
-```
-
+The ability of the model to accurately model the trend enables officials and authorities to gain deeper insights, and to make a more educated decision based on the evidence. Overall, officials can use the Negative Binomial model, and leverage its predictive power to implement practices and make changes to better the health of Ontario's population.
 
 
 
 # Discussion
 
-## First discussion point {#sec-first-point}
+## About the Findings
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+By selecting a model that accurately fits the mortality data (\ref{sec-data}), officials gain a powerful tool in analyzing and predicting the health of Ontario's population. Leveraging this tool can be used for targeted developments and interventions tailored to the population. Insights from the model can be used to allocate funds and resources, and find discrepancies in the healthcare system. 
 
-## Second discussion point
-
-## Third discussion point
+It can be seen from the model summary in the appendix (\ref{app}) that some features (Causes of Death) have a higher overall presence than others. Officials could use this information to allocate resources towards the features that have the highest mortality rate. Furthermore, the Negative Binomial model can be used to forecast future mortality trends, which can be used to proactively plan and adapt the healthcare system wherever possible.
 
 ## Weaknesses and next steps
 
-Weaknesses and next steps should also be included.
+Weaknesses in this study are most prevalent in the model (\ref{model}) section. Models were restricted to Generalized Linear Models (GLM's), and although they accurately captured the underlying distribution, a different type of model could have done a better job. Additionally, access to more data that covers a wider time rane would yield a better model that could be used for more general inference.
 
 \newpage
 
-\appendix
+# Appendix {#app}
 
-# Appendix {-}
-
-
-# Additional data details
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
+## Negative Binomial Summary for one Feature
+The `model summary` [@modelsummary] library was used to display the summary statistics.
 ```{r}
-#| eval: true
-#| echo: false
-#| message: false
 #| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
 #| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
+#| label: tbl-neg
+#| tbl-ca: Negative Binomial Summary Statistics
+#| echo: false
 
-plot(first_model, "trace")
+model_summary <- summary(model_neg_binomial)
 
-plot(first_model, "rhat")
+# Display only the top few rows, for example, let's display the first 10 rows
+head(model_summary, 2)
+
 ```
-
-
 
 \newpage
-
 
 # References
 
