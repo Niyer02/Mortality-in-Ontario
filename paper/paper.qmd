@@ -29,7 +29,7 @@ library(modelsummary)
 
 # Introduction
 
-In Ontario, Canada, the investigation of morality trends has attracted significant attention, driven by a commitment from government officials to make evidence-based policies. Morality trends are a vital metric in assessing the health of a population, and provides insight into the effectiveness of the healthcare systems. This paper models morality trends in Ontario from 2002 to 2022, using data (\ref{sec-data}) provided by [@statscan].
+In Ontario, Canada, the investigation of morality trends has attracted significant attention, driven by a commitment from government officials to make evidence-based policies. Morality trends are a vital metric in assessing the health of a population, and provides insight into the effectiveness of the healthcare systems. This paper models morality trends in Ontario from 2002 to 2022, using data (\ref{sec-data}) provided by Statistics Canada [@statscan].
 
 This study aims to fill the gap in understanding the underlying distribution of mortality patters in Ontario. Using mainly `R` [@citeR], `tidyverse` [@citetidy], and `rstanarm` [@citerstanarm], and with heavy inspiration from TELLING STORIES WITH DATA [@rohan] the data is analyzed using regression analysis to find the behavior of mortality trends.
 
@@ -38,7 +38,7 @@ The analysis revealed that mortality trends in Ontario are best represented usin
 
 # Data {#sec-data}
 
-The raw data was retrieved from Statistics Canada [@statscan]. The data provided was a comprehensive table with many variables. However, for the purpose of this analysis, only the most prevalent features were retained. Cleaned data [@dplyr] [@readr] was derived from the raw data, with  features of interest being the cause of death (`Leading causes of death (ICD-10)`) and death count (`VALUE`). The data was extracted and cleaned such that each year has the same 5 causes of death (`Leading causes of death (ICD-10)`), which allowed for the fitting of the mode to the data set.
+The raw data was retrieved from Statistics Canada [@statscan]. The data provided was a comprehensive table with many variables. However, for the purpose of this analysis, only the most prevalent features were retained. Cleaned data [@dplyr] was derived from the raw data, with  features of interest being the cause of death (`Leading causes of death (ICD-10)`) and death count (`VALUE`). The data was extracted and cleaned such that each year has the same 5 causes of death (`Leading causes of death (ICD-10)`), which allowed for the fitting of the mode to the data set.
 
 For a better understating, the data can be classified by year (`REF_DATE`) with 5 causes of death (`Leading causes of death (ICD-10)`) per year, in the range of 2002 to 2022. A time series of the variables can be seen in @fig-data. 
 
@@ -198,7 +198,7 @@ Weaknesses in this study are most prevalent in the model (\ref{model}) section. 
 # Appendix {#app}
 
 ## Negative Binomial Summary for one Feature
-The `model summary` [@modelsummary] library was used to display the summary statistics.
+The `model summary` [@modelsummary] library along with the `readr`[@readr] library were used to read and display the summary statistics.
 ```{r}
 #| warning: false
 #| message: false
